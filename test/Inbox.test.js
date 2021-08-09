@@ -25,4 +25,10 @@ describe('Inbox', () => {
         const message = await inbox.methods.message().call();
         assert.strictEqual(message, initialMessage);
     })
+    it('Can update the message', async () => {
+        const newMessage = "New data";
+        await inbox.methods.setMessage(newMessage).send({ from: accounts[0] });
+        const message = await inbox.methods.message().call();
+        assert.strictEqual(message, newMessage);
+    })
 })
